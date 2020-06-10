@@ -1,9 +1,11 @@
 #region test
 
 /// @func assert
+///
 /// @desc Asserts that a condition is true. If it isn't it throws an error with the given message.
-/// @arg {bool} condidion
-/// @arg {string} message
+///
+/// @arg {Bool} condidion
+/// @arg {String} message
 
 assert = function( _condition, _message ) {
 	if ( !_condition ) {
@@ -12,10 +14,12 @@ assert = function( _condition, _message ) {
 }
 
 /// @func assert_equals
-/// desc Asserts that two arguments are equal. If they are not, an error is thrown with the given message. 
+///
+/// @desc Asserts that two arguments are equal. If they are not, an error is thrown with the given message. 
+///
 /// @arg {Any} expected
 /// @arg {Any} actuals
-/// @arg {string} [message]
+/// @arg {String} [message]
 
 assert_equals = function( _expected, _actual, _message ) {
 	_message = is_undefined( _message ) ? "" : _message;
@@ -27,10 +31,12 @@ assert_equals = function( _expected, _actual, _message ) {
 }
 
 /// @func assert_array_equals( expected, actuals, [message] )
-/// desc Asserts that two arguments are equal. If they are not, an error is thrown with the given message. 
+///
+/// @desc Asserts that two arguments are equal. If they are not, an error is thrown with the given message. 
+///
 /// @arg {Array} expected
 /// @arg {Array} actuals
-/// @arg {string} [message]
+/// @arg {String} [message]
 
 assert_array_equals = function( _expected, _actual, _message ) {
 	_message = is_undefined( _message ) ? "" : _message;
