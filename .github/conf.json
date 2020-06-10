@@ -1,0 +1,21 @@
+{
+    "plugins": [ "plugins/commentConvert", "plugins/commentsOnly", "plugins/markdown" ],
+    "recurseDepth": 10,
+    "source": {
+        "includePattern": ".+\\.gml?$"
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    },
+    "markdown": {
+        "hardwrap": false,
+        "excludeTags": ["author"]
+    }
+}
+© 2020 GitHub, Inc.
