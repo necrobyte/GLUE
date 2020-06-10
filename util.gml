@@ -1,6 +1,7 @@
 #region test
 
-/// @func assert( condition, message )
+/// @func assert
+/// @desc Asserts that a condition is true. If it isn't it throws an error with the given message.
 /// @arg {bool} condidion
 /// @arg {string} message
 
@@ -10,9 +11,10 @@ assert = function( _condition, _message ) {
 	}
 }
 
-/// @func assert_equals( expected, actuals, [message] )
-/// @arg expected
-/// @arg actuals
+/// @func assert_equals
+/// desc Asserts that two arguments are equal. If they are not, an error is thrown with the given message. 
+/// @arg {Any} expected
+/// @arg {Any} actuals
 /// @arg {string} [message]
 
 assert_equals = function( _expected, _actual, _message ) {
@@ -25,8 +27,9 @@ assert_equals = function( _expected, _actual, _message ) {
 }
 
 /// @func assert_array_equals( expected, actuals, [message] )
-/// @arg expected
-/// @arg actuals
+/// desc Asserts that two arguments are equal. If they are not, an error is thrown with the given message. 
+/// @arg {Array} expected
+/// @arg {Array} actuals
 /// @arg {string} [message]
 
 assert_array_equals = function( _expected, _actual, _message ) {
