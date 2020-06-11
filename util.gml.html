@@ -24,7 +24,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_list">_list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_map">_map</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_max">_max</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_min">_min</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_priority">_priority</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_queue">_queue</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_stack">_stack</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#assert">assert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#assert_array_equals">assert_array_equals</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#assert_equals">assert_equals</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#log">log</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#to_string">to_string</a></span></li>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_add">_add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_div">_div</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_floordiv">_floordiv</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_identity">_identity</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_list">_list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_map">_map</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_max">_max</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_min">_min</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_mod">_mod</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_mul">_mul</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_pow">_pow</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_priority">_priority</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_queue">_queue</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_rem">_rem</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_stack">_stack</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_sub">_sub</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#_truth">_truth</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#apply">apply</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#assert">assert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#assert_array_equals">assert_array_equals</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#assert_equals">assert_equals</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#log">log</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#to_string">to_string</a></span></li>
 </nav>
 
 <div id="main">
@@ -179,6 +179,42 @@ _priority = function() {
 
 #region misc
 
+/// @func apply
+///
+/// @desc Executes function with arguments passed as array. Up to 16 arguments supported.
+///
+/// @arg {Method} function
+/// @arg {Array} arguments
+///
+/// @return {Any} Result returned by function
+///
+/// @example
+/// apply( min, [ 1, 2, 3 ] ) --> 6
+function apply( func, a ) {
+	var size = array_length( a );
+	switch ( size ) {
+			case 0: return func( );
+			case 1: return func( a[0] );
+			case 2: return func( a[0], a[1] );
+			case 3: return func( a[0], a[1], a[2] );
+			case 4: return func( a[0], a[1], a[2], a[3] );
+			case 5: return func( a[0], a[1], a[2], a[3], a[4] );
+			case 6: return func( a[0], a[1], a[2], a[3], a[4], a[5] );
+			case 7: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6] );
+			case 8: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7] );
+			case 9: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8] );
+			case 10: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9] );
+			case 11: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10] );
+			case 12: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11] );
+			case 13: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12] );
+			case 14: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13] );
+			case 15: return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13], a[14] );
+			default:
+				return func( a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13], a[14], a[15] );
+		}
+}
+
+
 /// @func _min
 /// @arg {Any} _a
 /// @arg {Any} _b
@@ -244,7 +280,175 @@ function log() {
 }
 
 #endregion
-</code></pre>
+
+#region operators
+
+/// @func _add
+///
+/// @desc Add values of two arguments
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a + b
+///
+/// @example
+/// _add( 2, 2 ) --> 4
+///_add( "foo", "bar" ) --> "foobar:
+
+function _add( a, b ) {
+	return a + b;
+}
+
+/// @func _div
+///
+/// @desc Divides first argment by the secone one
+/// @see _floordiv
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a / b
+///
+/// @example
+/// _div( 4, 2 ) --> 2
+
+function _div( a, b ) {
+	return a / b;
+}
+
+/// @func _floordiv
+///
+/// @desc Divides first argment by the secone one and returns integer part.
+/// @see _div
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a div b
+///
+/// @example
+/// _div( 5, 2 ) --> 2.50
+///_floordiv( 5, 2 ) --> 2
+
+function _floordiv( a, b ) {
+	return a div b;
+}
+
+/// @func _identity
+///
+/// @desc Function that returns it's argument
+///
+/// @arg {Any} a
+///
+/// @return {Any} a
+///
+/// @example
+/// _identity( 10 ) --> 10
+
+function _identity( a ) {
+	return a;
+}
+
+/// @func _mod
+///
+/// @desc Divides first argment by the secone one and returns modulus.
+/// @see _rem
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} modulus of a divided by b
+///
+/// @example
+/// _mod( 4, 2 ) --> 0
+
+function _mod( a, b ) {
+	return ( ( a % b ) + b ) % b;
+}
+
+/// @func _mul
+///
+/// @desc Multiplies argument values
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a * b
+///
+/// @example
+/// _mul( 2, 2 ) --> 4
+
+function _mul( a, b ) {
+	return a * b;
+}
+
+/// @func _rem
+///
+/// @desc Divides first argment by the secone one and returns remainder.
+/// @see _mod
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a % b
+///
+/// @example
+/// _rem( 4, 2 ) --> 0
+
+function _rem( a, b ) {
+	return a % b;
+}
+
+/// @func _pow
+///
+/// @desc Substract second argument from the first one
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} power( a, b )
+///
+/// @example
+/// _pow( 2, 2 ) --> 4
+
+function _pow( a, b ) {
+	return power( a, b );
+}
+
+/// @func _sub
+///
+/// @desc Substract second argument from the first one
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a - b
+///
+/// @example
+/// _sub( 4, 2 ) --> 2
+
+function _sub( a, b ) {
+	return a - b;
+}
+
+/// @func _truth
+///
+/// @desc Returns if argument is true
+///
+/// @arg {Any} a
+///
+/// @return {Bool} Boolean representation of object
+///
+/// @example
+/// _truth( 1 ) --> true
+///_truth( 0.2 ) --> false
+
+function _truth( a ) {
+	return bool( a );
+}
+
+#endregion</code></pre>
         </article>
     </section>
 
@@ -256,7 +460,7 @@ function log() {
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Thu Jun 11 2020 00:50:20 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Thu Jun 11 2020 07:07:37 GMT+0000 (Coordinated Universal Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
