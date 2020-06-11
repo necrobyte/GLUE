@@ -30,7 +30,7 @@ assert_equals = function( _expected, _actual, _message ) {
 	}
 }
 
-/// @func assert_array_equals( expected, actuals, [message] )
+/// @func assert_array_equals
 ///
 /// @desc Asserts that two arguments are equal. If they are not, an error is thrown with the given message. 
 ///
@@ -57,7 +57,7 @@ assert_array_equals = function( _expected, _actual, _message ) {
 
 #region data_structues
 
-/// @function _list( [...] )
+/// @function _list
 /// @desc returns ds_list
 /// @arg [...]
 
@@ -72,7 +72,7 @@ _list = function( ) {
 	return _ds;
 }
 
-/// @function _stack( [...] )
+/// @function _stack
 /// @desc returns ds_stack
 /// @arg [...]
 
@@ -87,7 +87,7 @@ _stack = function() {
 	return _ds;
 }
 
-/// @function _queue( [...] )
+/// @function _queue
 /// @desc returns ds_queue
 /// @arg [...]
 
@@ -102,7 +102,7 @@ _queue = function() {
 	return _ds;
 }
 
-/// @function _map( [...] )
+/// @function _map
 /// @desc returns ds_map
 /// @arg {array} [...] key, value pairs
 
@@ -118,7 +118,7 @@ _map = function() {
 	return _ds;
 }
 
-/// @function _priority( [...] )
+/// @function _priority
 /// @desc returns ds_priority
 /// @arg {array} [...] value, priority pairs
 
@@ -138,7 +138,7 @@ _priority = function() {
 
 #region misc
 
-/// @func _min( a, b, [...] )
+/// @func _min
 /// @arg {Any} _a
 /// @arg {Any} _b
 /// @arg {Any} [...]
@@ -154,7 +154,7 @@ _min = function( _a, _b ) {
 	return _result;
 }
 
-/// @func _max( a, b, [...] )
+/// @func _max
 /// @arg {Any} _a
 /// @arg {Any} _b
 /// @arg {Any} [...]
@@ -170,7 +170,7 @@ _max = function( _a, _b ) {
 	return _result;
 }
 
-/// @func to_string( object, [separator] )
+/// @func to_string
 /// @desc Returs string representation of object
 /// @arg object
 /// @arg [separator]
@@ -188,8 +188,8 @@ to_string = function( _object, _separator ) {
 	}
 }
 
-/// @func log( ... )
-/// @desc Concatenates all arguments and uses show_debug_message
+/// @func log
+/// @desc Concatenates all arguments and outputs to console using show_debug_message
 /// @arg {Any} ...
 
 function log() {
