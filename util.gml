@@ -138,7 +138,7 @@ _priority = function() {
 
 #region misc
 
-/// @func apply( function, arguments )
+/// @func apply
 ///
 /// @desc Executes function with arguments passed as array. Up to 16 arguments supported.
 ///
@@ -236,6 +236,175 @@ function log() {
 	}
 
 	show_debug_message( _s );
+}
+
+#endregion
+
+#region operators
+
+/// @func _add
+///
+/// @desc Add values of two arguments
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a + b
+///
+/// @example
+/// _add( 2, 2 ) --> 4
+///_add( "foo", "bar" ) --> "foobar:
+
+function _add( a, b ) {
+	return a + b;
+}
+
+/// @func _div
+///
+/// @desc Divides first argment by the secone one
+/// @see _floordiv
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a / b
+///
+/// @example
+/// _div( 4, 2 ) --> 2
+
+function _div( a, b ) {
+	return a / b;
+}
+
+/// @func _floordiv
+///
+/// @desc Divides first argment by the secone one and returns integer part.
+/// @see _div
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a div b
+///
+/// @example
+/// _div( 5, 2 ) --> 2.50
+///_floordiv( 5, 2 ) --> 2
+
+function _floordiv( a, b ) {
+	return a div b;
+}
+
+/// @func _identity
+///
+/// @desc Function that returns it's argument
+///
+/// @arg {Any} a
+///
+/// @return {Any} a
+///
+/// @example
+/// _identity( 10 ) --> 10
+
+function _identity( a ) {
+	return a;
+}
+
+/// @func _mod
+///
+/// @desc Divides first argment by the secone one and returns modulus.
+/// @see _rem
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} modulus of a divided by b
+///
+/// @example
+/// _mod( 4, 2 ) --> 0
+
+function _mod( a, b ) {
+	return ( ( a % b ) + b ) % b;
+}
+
+/// @func _mul
+///
+/// @desc Multiplies argument values
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a * b
+///
+/// @example
+/// _mul( 2, 2 ) --> 4
+
+function _mul( a, b ) {
+	return a * b;
+}
+
+/// @func _rem
+///
+/// @desc Divides first argment by the secone one and returns remainder.
+/// @see _mod
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a % b
+///
+/// @example
+/// _rem( 4, 2 ) --> 0
+
+function _rem( a, b ) {
+	return a % b;
+}
+
+/// @func _pow
+///
+/// @desc Substract second argument from the first one
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} power( a, b )
+///
+/// @example
+/// _pow( 2, 2 ) --> 4
+
+function _pow( a, b ) {
+	return power( a, b );
+}
+
+/// @func _sub
+///
+/// @desc Substract second argument from the first one
+///
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Number} a - b
+///
+/// @example
+/// _sub( 4, 2 ) --> 2
+
+function _sub( a, b ) {
+	return a - b;
+}
+
+/// @func _truth
+///
+/// @desc Returns if argument is true
+///
+/// @arg {Any} a
+///
+/// @return {Bool} Boolean representation of object
+///
+/// @example
+/// _truth( 1 ) --> true
+///_truth( 0.2 ) --> false
+
+function _truth( a ) {
+	return bool( a );
 }
 
 #endregion
