@@ -7,7 +7,7 @@
 /// @arg {Bool} condidion
 /// @arg {String} message
 
-assert = function( _condition, _message ) {
+function assert( _condition, _message ) {
 	if ( !_condition ) {
 		show_error( _message, true );		
 	}
@@ -21,7 +21,7 @@ assert = function( _condition, _message ) {
 /// @arg {Any} actuals
 /// @arg {String} [message]
 
-assert_equals = function( _expected, _actual, _message ) {
+function assert_equals( _expected, _actual, _message ) {
 	_message = is_undefined( _message ) ? "" : _message;
 	if ( typeof( _expected ) == "array" ) {
 		assert( array_equals( _expected, _actual ), _message );	
@@ -38,7 +38,7 @@ assert_equals = function( _expected, _actual, _message ) {
 /// @arg {Array} actuals
 /// @arg {String} [message]
 
-assert_array_equals = function( _expected, _actual, _message ) {
+function assert_array_equals( _expected, _actual, _message ) {
 	_message = is_undefined( _message ) ? "" : _message;
 	var _size = array_length( _expected );
 	assert( _size == array_length( _actual ), _message );
@@ -61,7 +61,7 @@ assert_array_equals = function( _expected, _actual, _message ) {
 /// @desc returns ds_list
 /// @arg [...]
 
-_list = function( ) {
+function _list( ) {
 	var _ds = ds_list_create();
 	var _n = argument_count;
 	
@@ -76,7 +76,7 @@ _list = function( ) {
 /// @desc returns ds_stack
 /// @arg [...]
 
-_stack = function() {
+function _stack( ) {
 	var _ds = ds_stack_create();
 	var _n = argument_count;
 	
@@ -91,7 +91,7 @@ _stack = function() {
 /// @desc returns ds_queue
 /// @arg [...]
 
-_queue = function() {
+function _queue( ) {
 	var _ds = ds_queue_create();
 	var _n = argument_count;
 	
@@ -106,7 +106,7 @@ _queue = function() {
 /// @desc returns ds_map
 /// @arg {array} [...] key, value pairs
 
-_map = function() {
+function _map( ) {
 	var _ds = ds_map_create();
 	var _n = argument_count;
 	
@@ -122,7 +122,7 @@ _map = function() {
 /// @desc returns ds_priority
 /// @arg {array} [...] value, priority pairs
 
-_priority = function() {
+function _priority( ) {
 	var _ds = ds_priority_create();
 	var _n = argument_count;
 	
@@ -148,7 +148,8 @@ _priority = function() {
 /// @return {Any} Result returned by function
 ///
 /// @example
-/// apply( min, [ 1, 2, 3 ] ) --> 6
+/// apply( min, [ 1, 2, 3 ] ) --> 1
+
 function apply( func, a ) {
 	var size = array_length( a );
 	switch ( size ) {
@@ -173,48 +174,20 @@ function apply( func, a ) {
 		}
 }
 
-
-/// @func _min
-/// @arg {Any} _a
-/// @arg {Any} _b
-/// @arg {Any} [...]
-
-_min = function( _a, _b ) {
-	var _result = _a;
-	var _n = argument_count;
-	
-	for( var i = 1; i < _n; ++i ) {
-		_result = min( _result, argument[ i ] );	
-	}
-	
-	return _result;
-}
-
-/// @func _max
-/// @arg {Any} _a
-/// @arg {Any} _b
-/// @arg {Any} [...]
-
-_max = function( _a, _b ) {
-	var _result = _a;
-	var _n = argument_count;
-	
-	for( var i = 1; i < _n; ++i ) {
-		_result = max( _result, argument[ i ] );	
-	}
-	
-	return _result;
-}
-
 /// @func to_string
+///
 /// @desc Returs string representation of object
-/// @arg object
+///
+/// @arg {Any} object
 /// @arg [separator]
+///
+/// @return {String}
 
-to_string = function( _object, _separator ) {
+function to_string( _object ) {
 	switch typeof( _object ) {
 		case "struct":
 			if ( variable_struct_exists( _object, "to_string" ) ) {
+				var _separator = ( argument_count > 1 ) ? argument[ 1 ] : "";
 				return _object.to_string( _separator );
 			}
 			return string( _object );
@@ -226,13 +199,13 @@ to_string = function( _object, _separator ) {
 
 /// @func log
 /// @desc Concatenates all arguments and outputs to console using show_debug_message
-/// @arg {Any} ...
+/// @arg {Any} [...]
 
 function log() {
 	var _s = "";
 
 	for ( var i = 0; i < argument_count; i++ ) {
-		_s += ( i > 0 ) ? " " + to_string( argument[ i ] ) : to_string( argument[ i ] );
+		_s += ( ( i > 0 ) ? " " : "" ) + to_string( argument[ i ] );
 	}
 
 	show_debug_message( _s );
@@ -307,6 +280,54 @@ function _floordiv( a, b ) {
 
 function _identity( a ) {
 	return a;
+}
+
+/// @func _max
+///
+/// @desc Returns largest of the input values
+///
+/// @arg {Number} _a
+/// @arg {Number} _b
+/// @arg {Number} [...]
+///
+/// @return {Number} Largest of the input values
+///
+/// @example
+/// _max( 1, 2, 3 ) --> 3
+
+_max = function( _a, _b ) {
+	var _result = _a;
+	var _n = argument_count;
+	
+	for( var i = 1; i < _n; ++i ) {
+		_result = max( _result, argument[ i ] );	
+	}
+	
+	return _result;
+}
+
+/// @func _min
+///
+/// @desc Returns smallest of the input values
+///
+/// @arg {Number} _a
+/// @arg {Number} _b
+/// @arg {Number} [...]
+///
+/// @return {Number} Smallest of the input values
+///
+/// @example
+/// _min( 1, 2, 3 ) --> 1
+
+_min = function( _a, _b ) {
+	var _result = _a;
+	var _n = argument_count;
+	
+	for( var i = 1; i < _n; ++i ) {
+		_result = min( _result, argument[ i ] );	
+	}
+	
+	return _result;
 }
 
 /// @func _mod
