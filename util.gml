@@ -1,3 +1,10 @@
+#region const
+
+global.tau = 2 * pi;
+#macro TWOPI global.tau
+
+#endregion
+
 #region test
 
 /// @func assert
