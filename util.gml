@@ -1,5 +1,8 @@
 #region const
 
+/// @constant {Number} TWOPI
+/// @default 2*pi
+
 global.tau = 2 * pi;
 #macro TWOPI global.tau
 
