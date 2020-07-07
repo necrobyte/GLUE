@@ -14,6 +14,15 @@ global.tau = 2 * pi;
 global.nv_magicconst = 4 * exp( -0.5 ) / sqrt( 2.0 )
 #macro NV_MAGICCONST global.nv_magicconst
 
+/// @constant {Number} SMALL_FACTORIALS
+/// @desc Also known as global.small_factorials. Lookup table for int64 factorial values.
+/// @default [0!..20!]
+
+global.small_factorials = [ 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 
+		3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 
+		20922789888000, 355687428096000, 6402373705728000, 121645100408832000, 2432902008176640000 ];
+#macro SMALL_FACTORIALS global.small_factorials
+
 #endregion
 
 #region test
@@ -248,6 +257,56 @@ function log() {
 
 function _add( a, b ) {
 	return a + b;
+}
+
+/// @func bit_length
+///
+/// @desc Returns number of bits that are needed to represent a.
+///
+/// @arg {Number} a
+///
+/// @return {Number}
+///
+/// @example
+/// bit_length( -37 ) --> 6 // -37 = -0b100101
+
+function bit_length( a ) {
+	return floor( log2 ( abs( a ) ) ) + 1;	
+}
+
+/// @func factorial
+///
+/// @desc Return x factorial as an integer.
+///
+/// @arg {Number} x
+///
+/// @return {Number}
+
+function factorial( a ) {
+	if ( ( a < 0 ) || ( a != floor( a ) ) ) {
+		throw "factorial only supports positive integer values";
+	}
+	
+	if ( a < 21 ) {
+		return SMALL_FACTORIALS[ a ];	
+	}
+	
+	var num_of_set_bits = function( i ) {
+		i = i - ( ( i >> 1 ) & $55555555 );
+		i = ( i & $33333333 ) + ( ( i >> 2 ) & $33333333 );
+		return ( ( ( i + ( i >> 4 ) & $F0F0F0F ) * $1010101 ) & $ffffffff ) >> 24;
+	}
+	
+	var _inner = 1;
+	var _outer = 1;
+	var n = bit_length( a );
+	
+	for ( var i = n; i >= 0; i-- ) {
+		_inner *= range_prod( ( ( a >> ( i + 1 ) ) + 1 ) | 1, ( ( a >> i ) + 1 ) | 1, 2 );
+		_outer *= _inner;
+	}
+	
+	return 1.0 * _outer << ( a - num_of_set_bits( a ) );
 }
 
 /// @func _div
