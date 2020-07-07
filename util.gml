@@ -373,6 +373,41 @@ function is_between( _value, a, b ) {
 	return ( b > a ) ? ( ( _value >= a ) && ( _value <= b ) ) : ( ( _value <= a ) && ( _value >= b ) );
 }
 
+/// @func isqrt
+///
+/// @desc  Return the integer part of the square root of n.
+///
+/// @arg {Number} n
+///
+/// @return {Number}
+///
+/// @example
+/// isqrt( 6 ) --> 2
+
+function isqrt( n ) {
+	n = floor( n );
+	
+	if ( n < 0 ) {
+		throw "sqrt() argument must be nonnegative";	
+	}
+	
+	if ( n == 0 ) {
+		return 0;	
+	}
+	
+	var c = ( bit_length( n ) - 1 ) div 2;
+	var a = 1;
+	var d = 0
+	
+	for ( var s = bit_length( c ) - 1; s >= 0; s-- ) {
+		var e = d;
+		var d = c >> s;
+		a = ( a << ( d - e - 1 ) ) + ( n >> ( 2 * c - e - d + 1 ) ) div a;
+	}
+
+	return a - bool( a * a > n );
+}
+
 /// @func _max
 ///
 /// @desc Returns largest of the input values
