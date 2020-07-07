@@ -7,6 +7,13 @@
 global.tau = 2 * pi;
 #macro TWOPI global.tau
 
+/// @constant {Number} NV_MAGICCONST
+/// @desc Also known as global.nv_magicconst. Used in normal variate random distribution.
+/// @default 4 * exp( -0.5 ) / sqrt( 2.0 )
+
+global.nv_magicconst = 4 * exp( -0.5 ) / sqrt( 2.0 )
+#macro NV_MAGICCONST global.nv_magicconst
+
 #endregion
 
 #region test
