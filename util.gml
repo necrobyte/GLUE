@@ -1,6 +1,7 @@
 #region const
 
 /// @constant {Number} TWOPI
+/// @desc Also known as global.tau
 /// @default 2*pi
 
 global.tau = 2 * pi;
