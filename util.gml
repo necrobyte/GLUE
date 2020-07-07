@@ -282,6 +282,20 @@ function _identity( a ) {
 	return a;
 }
 
+/// @func is_between
+///
+/// @desc Check if value is in range [ a, b ]
+///
+/// @arg {Number} value
+/// @arg {Number} a
+/// @arg {Number} b
+///
+/// @return {Bool}
+
+function is_between( _value, a, b ) {
+	return ( b > a ) ? ( ( _value >= a ) && ( _value <= b ) ) : ( ( _value <= a ) && ( _value >= b ) );
+}
+
 /// @func _max
 ///
 /// @desc Returns largest of the input values
