@@ -161,6 +161,167 @@ function _priority( ) {
 	return _ds;
 }
 
+/// @func Map()
+/// @name Graph
+/// @class
+///
+/// @classdesc Map-like data structure
+///
+/// @return {Map} - Map struct
+
+function Map() constructor {
+	/// @member {Struct} data
+	/// @memberof Map
+	///
+	/// @desc Key-value pairs
+	data = { };
+	
+	/// @member {Number} size
+	/// @memberof Map
+	///
+	/// @desc Amount of defined entries.
+	size = 0;
+	
+	static __iter = function() {
+		var _iter = __iter_dict( data, function() {
+			var _result = cache;
+			cache = undefined;
+			++index;
+			return _result;
+		}, function( _key ) {
+			return variable_struct_get( data, _key );
+		}, function() {
+			while ( ( index < size ) && is_undefined( cache ) ) {
+				cache = keys[ index ];
+				if ( is_undefined( get( cache ) ) ) {
+					cache = undefined;
+					++index;
+				}
+			}
+			
+			return index >= size;
+		} );
+	
+		_iter.keys = variable_struct_get_names( data );
+		_iter.index = 0;
+		_iter.cache = undefined;
+		_iter.size = array_length( _iter.keys );
+
+		return _iter;
+	}
+	
+	static add = function( _key, _value ) {
+		if ( is_undefined( variable_struct_get( data, _key ) ) ) {
+			if ( !is_undefined( _value ) ) {
+				++size;	
+			}
+		} else if ( is_undefined( _value ) && ( --size == 0 ) ) {
+			clear();
+			exit;
+		}
+				
+		variable_struct_set( data, _key, _value );
+	}
+	
+	/// @method clear
+	/// @memberof Map
+	///
+	/// @desc Remove all items from Map
+	
+	static clear = function() {
+		delete data;
+		
+		size = 0;
+		
+		data = { };
+	};
+	
+	/// @method exists
+	/// @memberof Map
+	///
+	/// @desc Return true if the specified key exists in Map
+	///
+	/// @arg {Any} key
+	///
+	/// @return {Bool}
+	
+	static exists = function( _key ) {
+		return !is_undefined( variable_struct_get( data, _key ) );
+	};
+	
+	/// @method get
+	/// @memberof Map
+	///
+	/// @desc Returns value associated with the key. If no such key exists then the function will return undefined.
+	///
+	/// @arg {Any} key
+	///
+	/// @return {Any}
+	
+	static get = function( _key ) {
+		return variable_struct_get( data, _key );
+	}
+	
+	/// @method is_empty
+	/// @memberof Map
+	///
+	/// @desc Return false if Map has any items, true if it does not.
+	///
+	/// @return {Bool}
+	
+	static is_empty = function() {
+		return ( size == 0 );
+	}
+	
+	/// @method set
+	/// @memberof Map
+	///
+	/// @desc Writes new value associated with key.
+	///
+	/// @arg {Any} key If key exists, previous value would be overwritten.
+	/// @arg {Any} value If undefined, key is removed.
+	///
+	/// @return {Bool}
+	
+	static set = add;
+	
+	/// @method remove
+	/// @memberof Map
+	///
+	/// @desc Remove key from the Map
+	///
+	/// @arg {Any} key
+	
+	static remove = function( _key ) {
+		if ( is_undefined( variable_struct_get( data, _key ) ) ) {
+			exit;
+		}
+		
+		variable_struct_set( data, _key, undefined );
+		
+		if ( --size == 0 ) {
+			clear();
+		}
+	}
+	
+	static to_string = function() {
+		var _result = "{ ";
+		
+		var _iter = __iter();
+		var _comma = false;
+		
+		while( !_iter.is_done() ) {
+			var a = _iter.next();
+			_result += ( _comma ? ", " : "" ) + a[ 0 ] + " : " + string( a[ 1 ] );
+			_comma = true;
+		}
+		
+		delete _iter;
+		
+		return _result + " }";
+	}
+}
+
 #endregion
 
 #region misc
