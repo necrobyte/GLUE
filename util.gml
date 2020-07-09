@@ -273,10 +273,32 @@ function Map() constructor {
 		return ( size == 0 );
 	}
 	
+	/// @method items
+	/// @memberof Map
+	///
+	/// @desc Returns Iterator of key-value pairs
+	///
+	/// @return {IteratorDict}
+	
+	static items = function() {
+		return __iter();
+	}
+	
+	/// @method keys
+	/// @memberof Map
+	///
+	/// @desc Returns Iterator of keys
+	///
+	/// @return {Iterator}
+	
+	static keys = function() {
+		return __iter().names();
+	}
+	
 	/// @method set
 	/// @memberof Map
 	///
-	/// @desc Writes new value associated with key.
+	/// @desc Sets new value associated with key.
 	///
 	/// @arg {Any} key If key exists, previous value would be overwritten.
 	/// @arg {Any} value If undefined, key is removed.
