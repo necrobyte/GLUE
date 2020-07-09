@@ -162,7 +162,7 @@ function _priority( ) {
 }
 
 /// @func Map()
-/// @name Graph
+/// @name Map
 /// @class
 ///
 /// @classdesc Map-like data structure
