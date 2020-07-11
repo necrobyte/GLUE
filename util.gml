@@ -213,13 +213,13 @@ function Map() constructor {
 	static add = function( _key, _value ) {
 		if ( is_undefined( variable_struct_get( data, _key ) ) ) {
 			if ( !is_undefined( _value ) ) {
-				++size;	
+				++size;
 			}
 		} else if ( is_undefined( _value ) && ( --size == 0 ) ) {
 			clear();
 			exit;
 		}
-				
+		
 		variable_struct_set( data, _key, _value );
 	}
 	
@@ -259,7 +259,20 @@ function Map() constructor {
 	/// @return {Any}
 	
 	static get = function( _key ) {
-		return variable_struct_get( data, _key );
+		var _result = data;
+		
+		for( var i = 0; i < argument_count; i++ ) {
+			if ( instanceof( _result ) == "Map" ) {
+				_result = _result.get( argument[ i ] );
+			} else if ( is_struct( _result ) ) {
+				_result = variable_struct_get( _result, argument[ i ] );
+			} else {
+				return undefined;	
+			}
+		}
+		
+		return _result;
+		
 	}
 	
 	/// @method is_empty
