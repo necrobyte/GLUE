@@ -161,23 +161,23 @@ function _priority( ) {
 	return _ds;
 }
 
-/// @func Map()
-/// @name Map
+/// @func StructMap()
+/// @name StructMap
 /// @class
 ///
 /// @classdesc Map-like data structure
 ///
-/// @return {Map} - Map struct
+/// @return {StructMap} - StructMap struct
 
-function Map() constructor {
+function StructMap() constructor {
 	/// @member {Struct} data
-	/// @memberof Map
+	/// @memberof StructMap
 	///
 	/// @desc Key-value pairs
 	data = { };
 	
 	/// @member {Number} size
-	/// @memberof Map
+	/// @memberof StructMap
 	///
 	/// @desc Amount of defined entries.
 	size = 0;
@@ -224,9 +224,9 @@ function Map() constructor {
 	}
 	
 	/// @method clear
-	/// @memberof Map
+	/// @memberof StructMap
 	///
-	/// @desc Remove all items from Map
+	/// @desc Remove all items from StructMap
 	
 	static clear = function() {
 		delete data;
@@ -237,9 +237,9 @@ function Map() constructor {
 	};
 	
 	/// @method exists
-	/// @memberof Map
+	/// @memberof StructMap
 	///
-	/// @desc Return true if the specified key exists in Map
+	/// @desc Return true if the specified key exists in StructMap
 	///
 	/// @arg {Any} key
 	///
@@ -250,7 +250,7 @@ function Map() constructor {
 	};
 	
 	/// @method get
-	/// @memberof Map
+	/// @memberof StructMap
 	///
 	/// @desc Returns value associated with the key. If no such key exists then the function will return undefined.
 	///
@@ -262,7 +262,7 @@ function Map() constructor {
 		var _result = data;
 		
 		for( var i = 0; i < argument_count; i++ ) {
-			if ( instanceof( _result ) == "Map" ) {
+			if ( instanceof( _result ) == "StructMap" ) {
 				_result = _result.get( argument[ i ] );
 			} else if ( is_struct( _result ) ) {
 				_result = variable_struct_get( _result, argument[ i ] );
@@ -276,9 +276,9 @@ function Map() constructor {
 	}
 	
 	/// @method is_empty
-	/// @memberof Map
+	/// @memberof StructMap
 	///
-	/// @desc Return false if Map has any items, true if it does not.
+	/// @desc Return false if StructMap has any items, true if it does not.
 	///
 	/// @return {Bool}
 	
@@ -287,7 +287,7 @@ function Map() constructor {
 	}
 	
 	/// @method items
-	/// @memberof Map
+	/// @memberof StructMap
 	///
 	/// @desc Returns Iterator of key-value pairs
 	///
@@ -298,7 +298,7 @@ function Map() constructor {
 	}
 	
 	/// @method keys
-	/// @memberof Map
+	/// @memberof StructMap
 	///
 	/// @desc Returns Iterator of keys
 	///
@@ -309,7 +309,7 @@ function Map() constructor {
 	}
 	
 	/// @method set
-	/// @memberof Map
+	/// @memberof StructMap
 	///
 	/// @desc Sets new value associated with key.
 	///
@@ -321,9 +321,9 @@ function Map() constructor {
 	static set = add;
 	
 	/// @method remove
-	/// @memberof Map
+	/// @memberof StructMap
 	///
-	/// @desc Remove key from the Map
+	/// @desc Remove key from the StructMap
 	///
 	/// @arg {Any} key
 	
