@@ -249,6 +249,30 @@ function StructMap() constructor {
 		return !is_undefined( variable_struct_get( data, _key ) );
 	};
 	
+	/// @method find
+	/// @memberof StructMap
+	///
+	/// @desc Returns the first key associated with value. If no such key exists then the function will return undefined.
+	///
+	/// @arg {Any} value
+	/// @arg {Method} [func] function of two arguments to compare Map item with value
+	///
+	/// @return {Any} key associated with value
+	
+	static find = function( _value ) {
+		var _iter = __iter();
+		var _func = ( argument_count > 1 ) ? argument[ 1 ] : _eq;
+		
+		while( !_iter.is_done() ) {
+			var _item = _iter.next();
+			if ( _func( _item[ 1 ], _value ) ) {
+				return _item[ 0 ];
+			}
+		}
+		
+		return undefined;
+	}
+	
 	/// @method get
 	/// @memberof StructMap
 	///
@@ -354,6 +378,128 @@ function StructMap() constructor {
 		delete _iter;
 		
 		return _result + " }";
+	}
+}
+
+/// @func UnionFind()
+/// @name UnionFind
+/// @class
+///
+/// @classdesc Union-find data structure.
+///
+/// @arg {Any} ... this structure will be initialized with the discrete partition on the given set of elements.
+///
+/// @return {UnionFind} - UnionFind struct
+
+function UnionFind( ) constructor {
+	elements = new StructMap();
+	parents = new StructMap();
+	
+	var _elements = [ ];
+	
+	for ( var i = 0; i < argument_count; i++ ) {
+		var _element = argument[ i ];
+		elements.add( _element, { parent: _element, weight: 1 } );
+		parents.add( _element, [ _element ] );
+	}
+	
+	static __iter = function() {
+		return elements.keys();	
+	}
+	
+	/// @method get
+	/// @memberof UnionFind
+	///
+	/// @desc Find and return the name of the set containing the object.
+	///
+	/// @arg {Any} object
+	///
+	/// @return {String}
+	
+	static get = function( _object ) {
+		var _element = elements.get( _object );
+		
+		if ( is_undefined( _element ) ) {
+			return undefined;	
+		}
+		
+		return _element.parent;
+	}
+	
+	/// @method groups
+	/// @memberof UnionFind
+	///
+	/// @desc Iterates over the sets stored in this structure.
+	///
+	/// @return {Iterator}
+	///
+	/// @example
+	/// partition = UnionFind( 1, 2, 3 )
+	///partition.groups() --> [ 1 ], [ 2 ], [ 3 ]
+	///partition.union( 1, 2 )
+	///partition.groups() --> [ 1, 2 ], [ 3 ]
+	
+	static groups = function() {
+		return parents.items().values();
+	}
+	
+	/// @method union
+	/// @memberof UnionFind
+	///
+	/// @desc Find the sets containing the objects and merge them all.
+	///
+	/// @arg {Any} ... objects
+	
+	static union = function( ) {
+		var _objects = [ ];
+		
+		for( var i = 0; i < argument_count; i++ ) {
+			_objects[ i ] = argument[ i ];
+		}
+		
+		var _elements = _imap( function( e ) { 
+			var _item = elements.get( e );
+			
+			if ( is_undefined( _item ) ) {
+				_item = { parent: e, weight: 1 };
+				elements.add( e, _item );
+				parents.add( e, [ e ] );
+			}
+			
+			return [ e, _item.parent, _item.weight ];
+		}, _objects ).sorted( function( e ) { return e[ 2 ]; }, true );
+		
+		if ( _elements.is_done() ) {
+			exit;
+		}
+		
+		var _root = _elements.next()[ 1 ];
+		var _root_struct = elements.get( _root );
+		var _root_parent = parents.get( _root );
+		
+		while( !_elements.is_done() ) {
+			var _element = _elements.next()[ 0 ];
+			
+			var _element_parent = elements.get( _element ).parent;
+			
+			if ( _element_parent != _root ) {
+				var _parent = parents.get( _element_parent );
+				var n = array_length( _parent );
+				_root_struct.weight += n;
+				array_copy( _root_parent, array_length( _root_parent ), _parent, 0, n );
+			
+				for( var i = 0; i < n; i++ ) {
+					
+					var _item = elements.get( _parent[ i ] );
+					_item.parent = _root;
+					_item.weight = _root_struct.weight;
+				}
+				
+				parents.set( _element_parent, undefined );
+			}
+		}
+		
+		parents.set( _root, _root_parent );
 	}
 }
 
@@ -468,6 +614,19 @@ function _add( a, b ) {
 
 function bit_length( a ) {
 	return floor( log2 ( abs( a ) ) ) + 1;	
+}
+
+/// @func _eq
+///
+/// @desc Returns true if two arguments are equal
+///
+/// @arg {Any} a
+/// @arg {Any} b
+///
+/// @return {Bool}
+
+function _eq( a, b ) {
+	return ( a == b );
 }
 
 /// @func factorial
